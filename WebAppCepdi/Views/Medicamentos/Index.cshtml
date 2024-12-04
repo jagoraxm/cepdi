@@ -1,0 +1,76 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>Lista de Medicamentos</h2>
+    <button id="btnAddMedicamento" class="btn btn-primary mb-3">Agrega Medicamento</button>
+    <table id="medicamentoTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th data-field="idMedicamento">ID</th>
+                <th data-field="nombre">Nombre</th>
+                <th data-field="concentracion">Concentracion</th>
+                <th data-field="idformafarmaceutica">Forma Farmaceutica</th>
+                <th data-field="precio">Precio</th>
+                <th data-field="stock">stock</th>
+                <th data-field="bhabilitado">bhabilitado</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- Modal para agregar o editar Medicamento -->
+<div class="modal fade" id="medicamentoModal" tabindex="-1" aria-labelledby="medicamentoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="medicamentoModalLabel">Agregar Medicamento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="medicamentoForm">
+                    <div class="form-group">
+                        <label for="medicamentoId">ID</label>
+                        <input type="text" class="form-control" id="medicamentoId" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicamentoNombre">Nombre</label>
+                        <input type="text" class="form-control" id="medicamentoNombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicamentoConcentracion">Concentración</label>
+                        <input type="text" class="form-control" id="medicamentoConcentracion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicamentoIdForma">Forma Farmaceutica</label>
+                        <input type="number" class="form-control" id="medicamentoIdForma" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicamentoPrecio">Precio</label>
+                        <input type="number" step="0.01" class="form-control" id="medicamentoPrecio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicamentoStock">Stock</label>
+                        <input type="number" class="form-control" id="medicamentoStock" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicamentoPresentacion">Presentación</label>
+                        <input type="text" class="form-control" id="medicamentoPresentacion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicamentoBhabilitado">Bhabilitado</label>
+                        <input type="text" class="form-control" id="medicamentoBhabilitado" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" id="saveMedicamento" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/medicamentos.js"></script>

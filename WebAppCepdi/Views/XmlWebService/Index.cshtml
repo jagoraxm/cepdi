@@ -1,0 +1,100 @@
+@{
+    ViewData["Title"] = "Subir archivo XML con Drag and Drop";
+}
+
+<h1>Arrastra y suelta un archivo XML</h1>
+
+<div id="drop-area" class="drop-area" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <p>Arrastra tu archivo XML aquí</p>
+</div>
+
+<button id="submitButton" class="btn btn-primary" disabled>Subir archivo</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Habilitar el botón cuando un archivo sea soltado
+    function allowDrop(event) {
+        event.preventDefault(); // Evitar que el archivo se abra
+    }
+
+    // Manejar el evento drop
+    function drop(event) {
+        event.preventDefault(); // Evitar el comportamiento por defecto
+
+        // Obtener el archivo
+        var files = event.dataTransfer.files;
+        if (files.length > 0) {
+            var file = files[0]; // Usar solo el primer archivo
+
+            // Mostrar el nombre del archivo
+            alert("Archivo seleccionado: " + file.name);
+
+            // Habilitar el botón de enviar
+            $("#submitButton").prop("disabled", false);
+
+            // Leer el archivo XML
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var xmlContent = e.target.result;
+                
+                var formData = processXml(xmlContent); // Procesar el XML al cargarse
+
+                // Llamar a un endpoint para procesar el archivo
+                $("#submitButton").click(function () {
+                    $.ajax({
+                        url: '@Url.Action("UploadFile", "UploadFile")',
+                        type: 'POST',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            alert("Archivo cargado exitosamente");
+                        },
+                        error: function () {
+                            alert("Error al cargar el archivo");
+                        }
+                    });
+                });
+            };
+            reader.readAsText(file); // Leer el archivo XML
+        }
+    }
+
+    var valorExtraido = ""; // Variable para almacenar el valor extraído del XML
+
+    // Función para procesar el contenido del XML y extraer el valor
+    function processXml(xmlContent) {
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(xmlContent, "application/xml");
+
+        // Obtener el nodo <tfd:TimbreFiscalDigital>
+        const timbreNode = xmlDoc.getElementsByTagName("tfd:TimbreFiscalDigital")[0];
+
+        // Verificar si el nodo existe
+        if (timbreNode) {
+            // Obtener el valor del atributo UUID
+            const uuid = timbreNode.getAttribute("UUID");
+            console.log("UUID:", uuid);
+            return uuid;
+        } else {
+            console.error("El nodo tfd:TimbreFiscalDigital no se encontró.");
+            return null;
+        }
+    }
+</script>
+
+<style>
+    /* Estilo para el área de arrastrar y soltar */
+    .drop-area {
+        width: 300px;
+        height: 200px;
+        border: 2px dashed #007bff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #007bff;
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>

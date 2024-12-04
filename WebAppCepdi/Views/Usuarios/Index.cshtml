@@ -1,0 +1,73 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>Lista de Usuarios</h2>
+    <button id="btnAddUsuario" class="btn btn-primary mb-3">Agrega Usuario</button>
+    <table id="usuarioTable" class="table table-striped">
+        <thead>
+            <tr>
+                <th data-field="idUsuario">ID</th>
+                <th data-field="nombre">Nombre</th>
+                <th data-field="fechaCreacion">Fecha creación</th>
+                <th data-field="usuario">Usuario</th>
+                <th data-field="password">Password</th>
+                <th data-field="idPerfil">Id Perfil</th>
+                <th data-field="estatus">Estatus</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<!-- Modal para agregar o editar Usuarios -->
+<div class="modal fade" id="usuarioModal" tabindex="-1" aria-labelledby="usuarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="usuarioModalLabel">Agregar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="usuarioForm">
+                    <div class="form-group">
+                        <label for="usuarioId">ID</label>
+                        <input type="text" class="form-control" id="usuarioId" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioNombre">Nombre</label>
+                        <input type="text" class="form-control" id="usuarioNombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioFechaCreacion">Fecha Creación</label>
+                        <input type="text" class="form-control" id="usuarioFechaCreacion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioUsuario">Usuario</label>
+                        <input type="text" class="form-control" id="usuarioUsuario" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioPassword">Password</label>
+                        <input type="text" class="form-control" id="usuarioPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioIdPerfil">Id Perfil</label>
+                        <input type="number" class="form-control" id="usuarioIdPerfil" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="usuarioEstatus">Estatus</label>
+                        <input type="number" class="form-control" id="usuarioEstatus" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" id="saveUsuario" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/usuarios.js"></script>
