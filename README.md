@@ -108,7 +108,10 @@ dotnet run
 
 Ambos proyectos estarán disponibles en sus respectivas direcciones locales.
 
-Uso
+---
+
+## Uso
+
 WebAPI
 Accede a la documentación de la API generada automáticamente en:
 
@@ -122,7 +125,10 @@ Abre el navegador y visita:
 http://localhost:5001
 ```
 
-Contribuciones
+---
+
+## Contribuciones
+
 ¡Las contribuciones son bienvenidas! Por favor, sigue estos pasos:
 
 Haz un fork del repositorio.
@@ -131,7 +137,10 @@ Realiza un commit de tus cambios: git commit -m 'Agregada nueva característica'
 Haz push a la rama: git push origin feature/nueva-caracteristica.
 Crea un Pull Request.
 
-Licencia
+---
+
+## Licencia
+
 Este proyecto está licenciado bajo la licencia MIT. Consulta el archivo LICENSE para más información.
 
 Si necesitas ayuda con algún detalle adicional, ¡avísame! 😊
