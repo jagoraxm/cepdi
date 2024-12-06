@@ -16,5 +16,8 @@ namespace WebAPICepdi.Models
         public int? stock { get; set; }
         public string? presentacion { get; set; } = string.Empty;
         public int? bhabilitado { get; set; }
+
+        // Propiedad de navegación a FormasFarmaceuticasClass
+        public FormasFarmaceuticasClass? FormaFarmaceutica { get; set; }
     }
 }

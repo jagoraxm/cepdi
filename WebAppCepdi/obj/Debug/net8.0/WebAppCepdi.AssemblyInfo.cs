@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebAppCepdi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72662e6f4b06b23d38647f27d8331b9466a2ab73")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b9d4e3ed32e27d7d05dee6e39c2b4901fc20bed")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebAppCepdi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebAppCepdi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

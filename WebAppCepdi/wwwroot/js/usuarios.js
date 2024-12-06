@@ -68,19 +68,53 @@ $(document).ready(function () {
 
         const method = $('#usuarioModalLabel').text() === 'Agregar Usuario' ? 'POST' : 'PUT';
 
-        $.ajax({
-            url: url,
-            type: method,
-            contentType: 'application/json',
-            data: JSON.stringify(usuario),
-            success: function () {
-                $('#usuarioModal').modal('hide');
-                loadUsuarios(); // Recargar la tabla
-            },
-            error: function (error) {
-                console.error('Error al guardar el usuario:', error);
-            },
-        });
+        const passwordError = $("#passwordError");
+        const passwordValue = $("#usuarioPassword").val();
+
+        // Define las reglas de validación
+        const minLength = 8;
+        const hasSpecialChar = /[!@@#$%^&*(),.?":{}|<>]/;
+
+        if ($('#usuarioModalLabel').text() === 'Agregar Usuario') {
+            // Verifica si cumple las reglas
+            console.log(hasSpecialChar.test(passwordValue));
+            if (passwordValue.length < minLength || !hasSpecialChar.test(passwordValue)) {
+                passwordError.show(); // Muestra el error
+                event.preventDefault(); // Evita el envío del formulario
+            } else {
+                passwordError.hide(); // Oculta el error
+
+                $.ajax({
+                    url: url,
+                    type: method,
+                    contentType: 'application/json',
+                    data: JSON.stringify(usuario),
+                    success: function () {
+                        $('#usuarioModal').modal('hide');
+                        loadUsuarios(); // Recargar la tabla
+                    },
+                    error: function (error) {
+                        console.error('Error al guardar el usuario:', error);
+                    },
+                });
+            }
+        } else {
+            $.ajax({
+                url: url,
+                type: method,
+                contentType: 'application/json',
+                data: JSON.stringify(usuario),
+                success: function () {
+                    $('#usuarioModal').modal('hide');
+                    loadUsuarios(); // Recargar la tabla
+                },
+                error: function (error) {
+                    console.error('Error al guardar el usuario:', error);
+                },
+            });
+        }
+        
+        
     });
 
     // Llenar el modal para editar un medicamento
@@ -95,6 +129,7 @@ $(document).ready(function () {
                 $('#usuarioFechaCreacion').val(usuario.fechaCreacion);
                 $('#usuarioUsuario').val(usuario.usuario);
                 $('#usuarioPassword').val(usuario.password);
+                $('#usuarioPassword').attr('disabled', 'disabled');
                 $('#usuarioIdPerfil').val(usuario.idPerfil);
                 $('#usuarioEstatus').val(usuario.estatus);
                 $('#usuarioModalLabel').text('Editar Usuario');

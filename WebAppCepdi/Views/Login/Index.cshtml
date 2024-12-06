@@ -3,23 +3,25 @@
         const username = $("#username").val();
         const password = $("#password").val();
 
-        $.ajax({
-            url: "http://localhost:5212/api/Login/Authenticate",
-            method: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({ username, password }),
-            success: function (response) {
-                if (response) {
-                    alert("Usuario autenticado");
-                    window.location.href = "/Home/Index";
-                } else {
-                    alert("Credenciales incorrectas");
+        
+
+            $.ajax({
+                url: "http://localhost:5212/api/Login/Authenticate",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ username, password }),
+                success: function (response) {
+                    if (response) {
+                        alert("Usuario autenticado");
+                        window.location.href = "/Home/Index";
+                    } else {
+                        alert("Credenciales incorrectas");
+                    }
+                },
+                error: function () {
+                    alert("Error al autenticar");
                 }
-            },
-            error: function () {
-                alert("Error al autenticar");
-            }
-        });
+            });
     }
 </script>
 
