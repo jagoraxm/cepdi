@@ -11,7 +11,7 @@ namespace WebAPICepdi.Data
         }  
 
         public DbSet<Models.Usuarios> Usuarios {get;set;} 
-
-        public DbSet<Models.Medicamentos> Medicamentos {get;set;}       
+        public DbSet<Models.Medicamentos> Medicamentos {get;set;}
+        public DbSet<Models.FormasFarmaceuticasClass> FormasFarmaceuticas {get;set;}      
     }
 }
