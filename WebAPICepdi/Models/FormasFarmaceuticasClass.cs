@@ -1,7 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAPICepdi.Models
 {
@@ -9,6 +8,7 @@ namespace WebAPICepdi.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int idFormaFarmaceutica { get; set; }
         public string nombre { get; set; } = string.Empty;
         public int? habilitado { get; set; }
         public ICollection<Medicamentos> Medicamentoss { get; set; }
